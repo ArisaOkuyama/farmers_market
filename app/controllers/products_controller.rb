@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-
+    @product.picture.attach(params[:product][:picture])
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -69,6 +69,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :description, :price, :state, :stock)
+      params.require(:product).permit(:name, :description, :price, :state, :stock, :picture)
     end
 end
