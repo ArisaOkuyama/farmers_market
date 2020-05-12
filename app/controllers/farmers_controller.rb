@@ -10,6 +10,8 @@ class FarmersController < ApplicationController
   # GET /farmers/1
   # GET /farmers/1.json
   def show
+    @farmer = Farmer.find(params[:id])
+    @reviews = @farmer.reviews
   end
 
   # GET /farmers/new

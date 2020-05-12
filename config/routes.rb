@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  resources :farmers
   devise_for :users
   root 'pages#index'
-  resources :reviews
+  
+  resources :farmers do
+    resources :reviews, only: [:index, :new,  :create, :show, :destroy ]
+  end
+
   resources :products
   get 'pages/qanda'
   get 'pages/contactus'
