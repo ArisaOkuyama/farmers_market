@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Farmers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Farm name</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>State</th>
+      <th>Address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @farmers.each do |farmer| %>
+      <tr>
+        <td><%= farmer.farm_name %></td>
+        <td><%= farmer.first_name %></td>
+        <td><%= farmer.last_name %></td>
+        <td><%= farmer.state %></td>
+        <td><%= farmer.address %></td>
+        <% if farmer.farmers_picture.attached? %>
+              <td><%=image_tag farmer.farmers_picture, width: 50 %></td>
+              <% end %>
+        <td><%= link_to 'Show', farmer %></td>
+        <td><%= link_to 'Edit', edit_farmer_path(farmer) %></td>
+        <td><%= link_to 'Destroy', farmer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Farmer', new_farmer_path %>

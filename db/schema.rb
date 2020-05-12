@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_12_015507) do
+ActiveRecord::Schema.define(version: 2020_05_12_060624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,32 +42,23 @@ ActiveRecord::Schema.define(version: 2020_05_12_015507) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "farms", force: :cascade do |t|
-    t.string "name"
-    t.string "farmer_name"
+  create_table "farmers", force: :cascade do |t|
+    t.string "farm_name"
+    t.string "first_name"
+    t.string "last_name"
     t.string "state"
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "favorite_farms", force: :cascade do |t|
+  create_table "favorite_farmers", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "farm_id", null: false
+    t.bigint "farmer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["farm_id"], name: "index_favorite_farms_on_farm_id"
-    t.index ["user_id"], name: "index_favorite_farms_on_user_id"
-  end
-
-  create_table "produces", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.integer "price"
-    t.string "state"
-    t.integer "stock"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.index ["farmer_id"], name: "index_favorite_farmers_on_farmer_id"
+    t.index ["user_id"], name: "index_favorite_farmers_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -81,13 +72,13 @@ ActiveRecord::Schema.define(version: 2020_05_12_015507) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "farm_id", null: false
     t.bigint "user_id", null: false
+    t.bigint "farmer_id", null: false
     t.string "comment"
     t.string "rating"
-    t.index ["farm_id"], name: "index_reviews_on_farm_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["farmer_id"], name: "index_reviews_on_farmer_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -109,8 +100,8 @@ ActiveRecord::Schema.define(version: 2020_05_12_015507) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "favorite_farms", "farms"
-  add_foreign_key "favorite_farms", "users"
-  add_foreign_key "reviews", "farms"
+  add_foreign_key "favorite_farmers", "farmers"
+  add_foreign_key "favorite_farmers", "users"
+  add_foreign_key "reviews", "farmers"
   add_foreign_key "reviews", "users"
 end

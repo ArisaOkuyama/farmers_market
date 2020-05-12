@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FarmTest < ActiveSupport::TestCase
+class FarmerTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
