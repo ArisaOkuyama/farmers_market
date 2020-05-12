@@ -4,7 +4,8 @@ class PagesController < ApplicationController
   end
   def qanda
   end
-  def contactus
-    
+  def contactus 
+  end
+  def profile
   end
 end
