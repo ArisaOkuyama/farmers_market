@@ -27,3 +27,15 @@
 
 <%= link_to 'Edit', edit_farmer_path(@farmer) %> |
 <%= link_to 'Back', farmers_path %>
+
+
+<p>
+<% @reviews.each do |review| %>
+  
+  <%= review.comment %>
+  <%= review.rating %>
+
+<% end %>
+
+</p>
+<%= link_to "new", new_farmer_review_path(@farmer) %>
