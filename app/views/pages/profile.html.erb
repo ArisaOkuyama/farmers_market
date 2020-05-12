@@ -1,0 +1,10 @@
+<% if user_signed_in? %>
+    <%= current_user.first_name %> 
+    <%= current_user.last_name %>
+    <%= current_user.state %>
+    <%= current_user.address %>
+    <%= current_user.phone %>
+    
+<% else %>
+    <p>You need to sign in or sign up before continuing.</p>
+<% end %>
