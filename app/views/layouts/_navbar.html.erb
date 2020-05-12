@@ -25,6 +25,11 @@
           <li class="nav-item">
             <%= link_to "Farmers", farmers_path, class: "nav-link" %>
           </li>
+          <% if !current_user.has_role? :farmer %>
+            <li class="nav-item">
+              <%= link_to "Farmer Log in", pages_login_path, class: "nav-link" %>
+            </li>
+          <% end %>
           
           <% if user_signed_in? %>
             <li class="nav-item">
@@ -38,18 +43,6 @@
               <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
             </li>
           <% end %>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
