@@ -58,3 +58,5 @@ gem "devise", "~> 4.7"
 
 gem "aws-sdk-s3", "~> 1.64", require: false
 
+
+gem "rolify", "~> 5.2"
