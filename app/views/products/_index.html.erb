@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>State</th>
+      <th>Stock</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= product.description %></td>
+            <td><%= product.price %></td>
+            <td><%= product.state %></td>
+            <td><%= product.stock %></td>
+              <% if product.picture.attached? %>
+              <td><%=image_tag product.picture, width: 50 %></td>
+              <% end %>
+            <td><%= link_to "SHOW", product %></td>
+          </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
