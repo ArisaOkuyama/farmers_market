@@ -2,12 +2,14 @@ class FarmersController < ApplicationController
   before_action :set_farmer, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :delete]
 
+  
   # GET /farmers
   # GET /farmers.json
   def index
     @farmers = Farmer.all
   end
 
+  
   # GET /farmers/1
   # GET /farmers/1.json
   def show

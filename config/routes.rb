@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   end
 
   resources :products
+  resources :pages , only: [:create]
   get 'pages/qanda'
   get 'pages/contactus'
   get 'pages/profile'
+  get 'pages/login'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
