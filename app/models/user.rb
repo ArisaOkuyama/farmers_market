@@ -8,4 +8,5 @@ class User < ApplicationRecord
     
     has_many :reviews, dependent: :destroy
     has_many :favorite_farmers, dependent: :destroy
+    has_one :farmer
 end
