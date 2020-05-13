@@ -36,6 +36,9 @@
   <%= review.comment %>
   <%= review.rating %>
 
+  <% if current_user == review.user %>
+    <%= link_to 'Destroy', "/farmers/#{@farmer.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 <% end %>
 
 </p>
