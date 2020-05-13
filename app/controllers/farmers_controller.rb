@@ -30,11 +30,13 @@ class FarmersController < ApplicationController
   # POST /farmers.json
   def create
     @farmer = Farmer.new(farmer_params)
+    @user = current_user
+    @farmer.user = @user
     @farmer.farmers_picture.attach(params[:farmer][:farmers_picture])
 
     respond_to do |format|
       if @farmer.save
-        format.html { redirect_to @farmer, notice: 'Farmer was successfully created.' }
+        format.html { redirect_to farmers_path, notice: 'Farmer was successfully created.' }
         format.json { render :show, status: :created, location: @farmer }
       else
         format.html { render :new }
@@ -62,7 +64,7 @@ class FarmersController < ApplicationController
   def destroy
     @farmer.destroy
     respond_to do |format|
-      format.html { redirect_to farmers_url, notice: 'Farmer was successfully destroyed.' }
+      format.html { redirect_to farmers_path, notice: 'Farmer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -75,6 +77,6 @@ class FarmersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def farmer_params
-      params.require(:farmer).permit(:farm_name, :first_name, :last_name, :state, :address)
+      params.require(:farmer).permit(:farm_name, :first_name, :last_name, :state, :address,:farmers_picture)
     end
 end

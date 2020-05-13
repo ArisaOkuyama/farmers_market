@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_12_063023) do
+ActiveRecord::Schema.define(version: 2020_05_13_031924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 2020_05_12_063023) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_farmers_on_user_id"
   end
 
   create_table "favorite_farmers", force: :cascade do |t|
@@ -69,6 +71,8 @@ ActiveRecord::Schema.define(version: 2020_05_12_063023) do
     t.integer "stock"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "farmer_id", null: false
+    t.index ["farmer_id"], name: "index_products_on_farmer_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -118,8 +122,10 @@ ActiveRecord::Schema.define(version: 2020_05_12_063023) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "farmers", "users"
   add_foreign_key "favorite_farmers", "farmers"
   add_foreign_key "favorite_farmers", "users"
+  add_foreign_key "products", "farmers"
   add_foreign_key "reviews", "farmers"
   add_foreign_key "reviews", "users"
 end
