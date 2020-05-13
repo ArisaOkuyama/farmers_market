@@ -25,12 +25,17 @@
           <li class="nav-item">
             <%= link_to "Farmers", farmers_path, class: "nav-link" %>
           </li>
-          <% if !current_user.has_role? :farmer %>
-            <li class="nav-item">
-              <%= link_to "Farmer Log in", pages_login_path, class: "nav-link" %>
-            </li>
+          <% if user_signed_in? %>
+            <% if current_user.has_role? :farmer %>
+              <li class="nav-item">
+                <%= link_to "Create product",new_product_path, class: "nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Register as Farmer", new_farmer_path	, class: "nav-link" %>
+              </li>
+            <% end %>
           <% end %>
-          
           <% if user_signed_in? %>
             <li class="nav-item">
               <%= link_to "Log out", destroy_user_session_path, class: "nav-link", method: :delete %>

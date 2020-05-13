@@ -36,6 +36,7 @@ class FarmersController < ApplicationController
 
     respond_to do |format|
       if @farmer.save
+        current_user.add_role (:farmer)
         format.html { redirect_to farmers_path, notice: 'Farmer was successfully created.' }
         format.json { render :show, status: :created, location: @farmer }
       else

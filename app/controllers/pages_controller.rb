@@ -9,9 +9,6 @@ class PagesController < ApplicationController
   def profile
   end
 
-  def login
-     
-  end
 
   def create
     if params[:key] == "farmer"
