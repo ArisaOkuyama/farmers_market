@@ -28,7 +28,7 @@
 <%= link_to 'Edit', edit_farmer_path(@farmer) %> |
 <%= link_to 'Back', farmers_path %>
 
-
+<h2> reviews: </h2>
 <p>
 <% @reviews.each do |review| %>
   
@@ -38,4 +38,42 @@
 <% end %>
 
 </p>
-<%= link_to "new", new_farmer_review_path(@farmer) %>
+
+<%= link_to "create view for this farmer", new_farmer_review_path(@farmer) %>
+
+<h2>End of reviews</h2>
+
+<h1>Products of </h1><%= @farmer.farm_name %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>State</th>
+      <th>Stock</th>
+      <th>Farm_Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= product.description %></td>
+            <td><%= product.price %></td>
+            <td><%= product.state %></td>
+            <td><%= product.stock %></td>
+            <td><%= @farmer.farm_name %></td>
+              <% if product.picture.attached? %>
+              <td><%=image_tag product.picture, width: 50 %></td>
+              <% end %>
+            <td><%= link_to "SHOW", product %></td>
+          </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
