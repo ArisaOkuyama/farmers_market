@@ -24,8 +24,9 @@
   <strong>Address:</strong>
   <%= @farmer.address %>
 </p>
-
-<%= link_to 'Edit', edit_farmer_path(@farmer) %> |
+<% if current_user.farmer == @farmer %>
+<%= link_to 'Edit', edit_farmer_path(@farmer) %>
+<% end %> |
 <%= link_to 'Back', farmers_path %>
 
 <h2> reviews: </h2>
