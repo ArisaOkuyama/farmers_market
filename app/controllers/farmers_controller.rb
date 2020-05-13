@@ -15,6 +15,7 @@ class FarmersController < ApplicationController
   def show
     @farmer = Farmer.find(params[:id])
     @reviews = @farmer.reviews
+    @products = @farmer.products
   end
 
   # GET /farmers/new
