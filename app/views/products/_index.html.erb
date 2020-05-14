@@ -26,6 +26,10 @@
               <td><%=image_tag product.picture, width: 50 %></td>
               <% end %>
             <td><%= link_to "SHOW", product %></td>
+          
+          <% if user_signed_in? && current_user.farmer == product.farmer %>
+            <td><%= link_to "DELETE", product , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
           </tr>
     <% end %>
   </tbody>

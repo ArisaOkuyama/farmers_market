@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  get 'categories/index'
+  get 'categories/create'
+  get 'categories/delete'
   root 'pages#index'
   
   devise_for :users

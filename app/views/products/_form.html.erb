@@ -40,7 +40,11 @@
     <%= form.label :picture %>
     <%= form.file_field :picture %>
   </div>
-
+  <div>
+    <%= form.label :category %>
+    <%= form.collection_select :category_id, Category.all, :id, :category %>
+  </div>
+  
   <div class="actions">
     <%= form.submit %>
   </div>
