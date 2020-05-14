@@ -81,3 +81,12 @@
 </table>
 <%= link_to 'create product page', new_product_path %>
 <br>
+
+<% if !FavoriteFarmer.exists?(user_id:current_user.id,farmer_id:@farmer.id) %>
+  <%= link_to "Add to favorite list", user_add_path(@farmer), method: :post%>
+<% else %>
+  <%= link_to "Remove from favorite list", user_remove_path(@farmer), method: :delete %>
+<% end %>
+    
+    
+    

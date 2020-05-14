@@ -8,5 +8,5 @@ class User < ApplicationRecord
     has_many :reviews, dependent: :destroy
     has_one :farmer
     has_many :favorite_farmers, dependent: :destroy
-    has_many :fav_farmes, through: :favorite_farmers, class_name: "Farmer", foreign_key: "farmer_id"
+    has_many :fav_farmes, through: :favorite_farmers, class_name: "Farmer", source: :favorited
 end
