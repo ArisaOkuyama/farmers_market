@@ -60,3 +60,4 @@ gem "aws-sdk-s3", "~> 1.64", require: false
 
 
 gem "rolify", "~> 5.2"
+gem 'stripe'
