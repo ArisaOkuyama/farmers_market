@@ -24,7 +24,7 @@
   <strong>Address:</strong>
   <%= @farmer.address %>
 </p>
-<% if current_user.farmer == @farmer %>
+<% if user_signed_in? && current_user.farmer == @farmer %>
 <%= link_to 'Edit', edit_farmer_path(@farmer) %>
 <% end %> |
 <%= link_to 'Back', farmers_path %>
@@ -36,15 +36,15 @@
   <%= review.comment %>
   <%= review.rating %>
 
-  <% if current_user == review.user %>
+  <% if user_signed_in? && current_user == review.user %>
     <%= link_to 'Destroy', "/farmers/#{@farmer.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 <% end %>
 
 </p>
-
-<%= link_to "create view for this farmer", new_farmer_review_path(@farmer) %>
-
+<% if user_signed_in? %>
+  <%= link_to "create view for this farmer", new_farmer_review_path(@farmer) %>
+<% end %>
 <h2>End of reviews</h2>
 
 <h1>Products of </h1><%= @farmer.farm_name %>
@@ -79,14 +79,23 @@
     <% end %>
   </tbody>
 </table>
-<%= link_to 'create product page', new_product_path %>
+<% if user_signed_in? && current_user.farmer == @farmer %>
+  <%= link_to 'create product page', new_product_path %>
+<% end %>
 <br>
-
-<% if !FavoriteFarmer.exists?(user_id:current_user.id,farmer_id:@farmer.id) %>
-  <%= link_to "Add to favorite list", user_add_path(@farmer), method: :post%>
+<% if user_signed_in? && !current_user.has_role?(:farmer) %>
+    <% if !FavoriteFarmer.exists?(user_id: current_user.id, farmer_id: @farmer.id) %>
+      <%= link_to "Add to favorite list", user_add_path(@farmer), method: :post%>
+    <% else %>
+      <%= link_to "Remove from favorite list", user_remove_path(@farmer), method: :delete %>
+    <% end %>
 <% else %>
-  <%= link_to "Remove from favorite list", user_remove_path(@farmer), method: :delete %>
+  
 <% end %>
     
-    
+
+<p>Number of follower for</p><%= @farmer.first_name %>
+<h6>
+<%= @favorited_users.count %>
+</h6>
     

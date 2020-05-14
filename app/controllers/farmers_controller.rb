@@ -16,6 +16,7 @@ class FarmersController < ApplicationController
     @farmer = Farmer.find(params[:id])
     @reviews = @farmer.reviews
     @products = @farmer.products
+    @favorited_users = @farmer.favorite_farmers
   end
 
   # GET /farmers/new
