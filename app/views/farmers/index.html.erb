@@ -26,7 +26,7 @@
               <td><%=image_tag farmer.farmers_picture, width: 50 %></td>
               <% end %>
         <td><%= link_to 'Show', farmer %></td>
-        <% if current_user.farmer == farmer %>
+        <% if user_signed_in? && current_user.farmer == farmer %>
           <td><%= link_to 'Edit', edit_farmer_path(farmer) %></td>
           <td><%= link_to 'Destroy', farmer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>

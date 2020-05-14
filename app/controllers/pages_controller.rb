@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   def contactus 
   end
   def profile
+    @favorite_farmers = current_user.favorite_farmers
   end
 
 
