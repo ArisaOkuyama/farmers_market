@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  
-  get 'categories/index'
-  get 'categories/create'
-  get 'categories/delete'
   root 'pages#index'
   
   devise_for :users
@@ -15,7 +11,7 @@ Rails.application.routes.draw do
   resources :farmers do
     resources :reviews, only: [:index, :new,  :create, :show, :destroy ]
   end
-
+  resources :categories, only:  [:index, :new,  :create, :destroy ]
   resources :products
   resources :pages , only: [:create]
   get 'pages/qanda'
