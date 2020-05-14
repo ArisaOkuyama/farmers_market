@@ -23,7 +23,7 @@
             <td><%= product.price %></td>
             <td><%= product.state %></td>
             <td><%= product.stock %></td>
-            <td><%= Category.find(product.category_id).category %></td>
+            <td><%= Category.find(product.category_id).name %></td>
               <% if product.picture.attached? %>
               <td><%=image_tag product.picture, width: 50 %></td>
               <% end %>

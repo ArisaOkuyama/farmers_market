@@ -42,7 +42,7 @@
   </div>
   <div>
     <%= form.label :category %>
-    <%= form.collection_select :category_id, Category.all, :id, :category %>
+    <%= form.collection_select :category_id, Category.all, :id, :name %>
   </div>
   
   <div class="actions">
