@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users
+  
   root 'pages#index'
   
+  devise_for :users
+  
+  resources :users do 
+    resources :favorite_farmers, only: [:index, :new,  :create, :show, :destroy ]
+  end
+
   resources :farmers do
     resources :reviews, only: [:index, :new,  :create, :show, :destroy ]
   end

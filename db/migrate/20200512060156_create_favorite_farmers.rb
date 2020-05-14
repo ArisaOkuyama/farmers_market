@@ -5,6 +5,7 @@ class CreateFavoriteFarmers < ActiveRecord::Migration[6.0]
       t.references :farmer, null: false, foreign_key: true
 
       t.timestamps
+      t.index [:user_id, :farmer_id], unique: true
     end
   end
 end
