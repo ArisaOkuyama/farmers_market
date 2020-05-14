@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_031924) do
+ActiveRecord::Schema.define(version: 2020_05_14_054904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 2020_05_13_031924) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "farmer_id", null: false
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["farmer_id"], name: "index_products_on_farmer_id"
   end
 
@@ -125,6 +127,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_031924) do
   add_foreign_key "farmers", "users"
   add_foreign_key "favorite_farmers", "farmers"
   add_foreign_key "favorite_farmers", "users"
+  add_foreign_key "products", "categories"
   add_foreign_key "products", "farmers"
   add_foreign_key "reviews", "farmers"
   add_foreign_key "reviews", "users"
