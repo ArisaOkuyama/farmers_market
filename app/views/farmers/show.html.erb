@@ -89,6 +89,13 @@
     <% else %>
       <%= link_to "Remove from favorite list", user_remove_path(@farmer), method: :delete %>
     <% end %>
+<% else %>
+  
 <% end %>
     
+
+<p>Number of follower for</p><%= @farmer.first_name %>
+<h6>
+<%= @favorited_users.count %>
+</h6>
     
