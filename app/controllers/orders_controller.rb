@@ -13,16 +13,17 @@ class OrdersController < ApplicationController
         currency: 'aud',
         quantity: 1,
         }],
-      success_url: "https://google.com",
-      cancel_url: 'http://localhost:3000/',
-      metadata: {product_id: @product.id}
+        
+        success_url: "#{root_url}orders/complete?item=#{@product.id}",
+        cancel_url: "#{root_url}"
       )
-
-      OrderHistory.create(user: current_user, product: @product)
+      
   end
 
   def complete
-    @orders = OrderHistory.find_by(user_id: current_user.id)
+    @product_number = params[:item]
+    OrderHistory.create(user_id: current_user.id, product_id: @product_number.to_i)
+    @products = current_user.order_history
   end
 
 end

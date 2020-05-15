@@ -9,5 +9,5 @@ class User < ApplicationRecord
     has_one :farmer
     has_many :favorite_farmers, dependent: :destroy
     has_many :fav_farmes, through: :favorite_farmers, class_name: "Farmer", source: :favorited
-    has_one :order_history
+    has_many :order_history
 end

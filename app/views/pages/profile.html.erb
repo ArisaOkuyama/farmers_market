@@ -9,7 +9,10 @@
         <p><%= farmer.farmer.farm_name %>
 
     <% end %>
-    
+
+    <% if !current_user.order_history.empty? %>
+        <%= link_to "orders history", orders_complete_path %>
+    <% end %>
 <% else %>
     <p>You need to sign in or sign up before continuing.</p>
 <% end %>
