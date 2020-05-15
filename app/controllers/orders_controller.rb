@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
+
   def new
     @product = Product.find(params[:product_id])
 
-    Stripe.api_key = 'sk_test_ZlBaF8I7L58ScoK4nwY2muBw00L5onR2Hu'
+    Stripe.api_key = Rails.application.credentials.dig(:stripe, :secret_key)
       @session = Stripe::Checkout::Session.create(
         payment_method_types: ['card'],
         line_items: [{
@@ -12,8 +13,16 @@ class OrdersController < ApplicationController
         currency: 'aud',
         quantity: 1,
         }],
-      success_url: 'http://localhost:3000/orders/complete',
+      success_url: "https://google.com",
       cancel_url: 'http://localhost:3000/',
+      metadata: {product_id: @product.id}
       )
+
+      OrderHistory.create(user: current_user, product: @product)
   end
+
+  def complete
+    @orders = OrderHistory.find_by(user_id: current_user.id)
+  end
+
 end
