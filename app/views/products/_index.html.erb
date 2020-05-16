@@ -1,3 +1,8 @@
+<%= form_tag(products_path, method: "get") do %>
+  <%= collection_select(:search, :category_id, Category.all, :id, :name) %>
+  <%= submit_tag "Search" %>
+<% end %>
+
 <h1>Top Products</h1>
 <div class="row">
   <% @products.each do |product| %>
