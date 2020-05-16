@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :products
   resources :pages , only: [:create]
   resources :orders, only: [:new, :complete]
+  resources :search, only: [:index]
   get 'orders/complete'
   get 'pages/qanda'
   get 'pages/contactus'
