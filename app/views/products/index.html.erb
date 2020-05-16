@@ -1,3 +1,9 @@
-indexpage for products
+<h1> Search by categry </h1>
 
+<%= form_tag(products_path, method: "get") do %>
+    <%= collection_select(:search, :category_id, Category.all, :id, :name) %>
+    <%= submit_tag "Search" %>
+<% end %>
+  
 <%= render 'products/index' %>
+
