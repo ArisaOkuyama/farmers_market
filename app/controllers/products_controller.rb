@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   def index
       if params[:search]
         @products = Product.search(params[:search][:category_id])
+        @products = @products.search(params[:state]) if params[:state].present?
       else
         @products = Product.all
       end

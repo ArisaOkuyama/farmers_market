@@ -2,6 +2,8 @@
 
 <%= form_tag(products_path, method: "get") do %>
     <%= collection_select(:search, :category_id, Category.all, :id, :name) %>
+    <%= text_field_tag(:state, params[:name]) %>
+
     <%= submit_tag "Search" %>
 <% end %>
   
