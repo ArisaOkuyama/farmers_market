@@ -4,8 +4,9 @@
     <%= collection_select(:search, :category_id, Category.all, :id, :name, prompt: 'All products') %>
     <%= text_field_tag(:state, params[:name]) %>
 
-    <%= submit_tag "Search", class: "btn btn-warning" %>
+    <%= button_tag(type: "submit", class: "btn btn-warning") do %>
+        <i class="fa fa-search"></i> Search
+    <% end %>
 <% end %>
-  
 <%= render 'products/index' %>
 
