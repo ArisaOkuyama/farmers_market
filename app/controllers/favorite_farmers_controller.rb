@@ -8,7 +8,7 @@ class FavoriteFarmersController < ApplicationController
     @user = current_user
     @farmer = Farmer.find(params[:user_id])
     if FavoriteFarmer.create(user_id: @user.id, farmer_id: @farmer.id)
-      redirect_to root_path
+      redirect_to farmer_path(@farmer)
     else
       redirect_to root_path
     end
@@ -19,7 +19,7 @@ class FavoriteFarmersController < ApplicationController
     @farmer = Farmer.find(params[:user_id])
     if favorite_farmer = FavoriteFarmer.find_by(user_id: @user.id, farmer_id: @farmer.id)
       favorite_farmer.destroy
-      redirect_to root_path
+      redirect_to farmer_path(@farmer)
     else
       redirect_to root_url
     end

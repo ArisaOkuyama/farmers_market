@@ -1,104 +1,125 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'Back', farmers_path, class: "btn btn-outline-success" %>
 
-<p>
-  <strong>Farm name:</strong>
-  <%= @farmer.farm_name %>
-</p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @farmer.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @farmer.last_name %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @farmer.state %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @farmer.address %>
-</p>
-<% if user_signed_in? && current_user.farmer == @farmer %>
-<%= link_to 'Edit', edit_farmer_path(@farmer) %>
-<% end %> |
-<%= link_to 'Back', farmers_path %>
-
-<h2> reviews: </h2>
-<p>
-<% @reviews.each do |review| %>
-  
-  <%= review.comment %>
-  <%= review.rating %>
-
-  <% if user_signed_in? && current_user == review.user %>
-    <%= link_to 'Destroy', "/farmers/#{@farmer.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
-<% end %>
-
-</p>
-<% if user_signed_in? %>
-  <%= link_to "create view for this farmer", new_farmer_review_path(@farmer) %>
-<% end %>
-<h2>End of reviews</h2>
-
-<h1>Products of </h1><%= @farmer.farm_name %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>State</th>
-      <th>Stock</th>
-      <th>Farm_Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-          <tr>
-            <td><%= product.name %></td>
-            <td><%= product.description %></td>
-            <td><%= product.price %></td>
-            <td><%= product.state %></td>
-            <td><%= product.stock %></td>
-            <td><%= @farmer.farm_name %></td>
-              <% if product.picture.attached? %>
-              <td><%=image_tag product.picture, width: 50 %></td>
-              <% end %>
-            <td><%= link_to "SHOW", product %></td>
-            <% if user_signed_in? && current_user.farmer == @farmer %>
-              <td><%= link_to "DELETE", product , method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
-          </tr>
-    <% end %>
-  </tbody>
-</table>
-<% if user_signed_in? && current_user.farmer == @farmer %>
-  <%= link_to 'create product page', new_product_path %>
-<% end %>
-<br>
-<% if user_signed_in? && !current_user.has_role?(:farmer) %>
-    <% if !FavoriteFarmer.exists?(user_id: current_user.id, farmer_id: @farmer.id) %>
-      <%= link_to "Add to favorite list", user_add_path(@farmer), method: :post%>
-    <% else %>
-      <%= link_to "Remove from favorite list", user_remove_path(@farmer), method: :delete %>
-    <% end %>
-<% else %>
-  
-<% end %>
-    
-
-<p>Number of follower for</p><%= @farmer.first_name %>
-<h6>
-<%= @favorited_users.count %>
-</h6>
-    
+<div class="container emp-profile">
+  <form method="post">
+      <div class="row">
+          <div class="col-md-4">
+              <div class="profile-img">
+                  <%= image_tag @farmer.farmers_picture %>
+              </div>
+          </div>
+          <div class="col-md-8">
+              <div class="profile-head">
+                          <h6>
+                            <%=@farmer.farm_name %>
+                          </h6>
+                          <h6>
+                            <%= @farmer.address %>
+                          </h6>
+                          <h5>
+                            <%=@farmer.first_name %> <%=@farmer.last_name %>
+                          </h5>
+                          <p class="proile-rating">STATE : <%=@farmer.state %></p>
+                          <br>
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item">
+                          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Product</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Review</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-4">
+              <div class="profile-work">
+                <br>
+                <% if user_signed_in? && !current_user.has_role?(:farmer) %>
+                  <% if !FavoriteFarmer.exists?(user_id: current_user.id, farmer_id: @farmer.id) %>
+                    <%= link_to "Follow", user_add_path(@farmer), method: :post , class: "btn btn-warning"%>
+                  <% else %>
+                    <%= link_to "Unfollow", user_remove_path(@farmer), method: :delete, class: "btn btn-primary" %>
+                  <% end %>
+                <% else %>
+                <% end %>
+                <h6>
+                <p>Number of followers : <%= @favorited_users.count %></p>
+                  followed by : 
+                  <% @favorited_users.each do  |user|  %>
+                   <%= User.find(user.user_id).first_name %>
+                  <% end %>
+                </h6>
+                <% if user_signed_in? && current_user.farmer == @farmer %>
+                  <%= link_to 'Edit', edit_farmer_path(@farmer) , class: "btn btn-outline-success" %>
+                <% end %>
+              </div>
+          </div>
+          <div class="col-md-8">
+              <div class="tab-content profile-tab" id="myTabContent">
+                  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                              
+                    
+                      <div class="row">
+                        <% @products.each do |product| %>
+                          <div class="col-md-4">
+                            <div class="card">
+                              <div class="image">
+                                <% if product.picture.attached? %>
+                                  <%= image_tag product.picture, width: 320, height: 150 %>
+                                <% end %>
+                              </div>
+                              <div class="card-inner">
+                                <div class="header">
+                                  <h2><%=product.name %></h2>
+                                  <h3><%=product.description %>
+                                  <h3>$<%=product.price %></h3>
+                                </div>
+                                <div class="content">
+                                  <tr>
+                                    <td><%= link_to "SHOW", product , class: "btn btn-info" %></td>
+                                    <% if user_signed_in? && current_user.farmer == product.farmer %>
+                                      <td><%= link_to "DELETE", product , method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-info" %></td>
+                                    <% end %>
+                                  <tr>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+                      </div>
+                              
+                              
+                  </div>
+                  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                      <div class="row">
+                          <div class="col-md-12">
+                            <h1> reviews: </h1>
+                            <% if user_signed_in? %>
+                              <%= link_to "create view for this farmer", new_farmer_review_path(@farmer), class: "btn btn-block btn-info	" %>
+                            <% end %>
+                            <p>
+                            <% if !@reviews.empty? %>
+                              <% @reviews.each do |review| %>
+                                <%= User.find(review.user_id).first_name %>
+                                <%= review.comment %>
+                                <%= review.rating %>
+                                
+                                <% if user_signed_in? && current_user == review.user %>
+                                <%= link_to 'Destroy', "/farmers/#{@farmer.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
+                                <% end %>
+                              <% end %>
+                            <% else %>
+                              <p> there is no review .... </p>
+                            <% end %>
+                            </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </form>           
+</div>
