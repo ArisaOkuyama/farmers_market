@@ -4,11 +4,12 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-      if params[:search]
+      if params[:search][:category_id].present?
         @products = Product.search(params[:search][:category_id])
         @products = @products.search(params[:state]) if params[:state].present?
       else
         @products = Product.all
+        @products = @products.search(params[:state]) if params[:state].present?
       end
   end
 
