@@ -1,5 +1,7 @@
 <%= link_to 'Back', farmers_path, class: "btn btn-outline-success" %>
-
+<% if user_signed_in? && current_user.farmer == @farmer %>
+  <%= link_to 'Create Product', new_product_path(@farmer) , class: "btn btn-outline-success" %>
+<% end %>
 
 <div class="container emp-profile">
   <form method="post">
