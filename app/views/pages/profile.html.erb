@@ -1,23 +1,30 @@
-<% if user_signed_in? %>
-    <%= current_user.first_name %> 
-    <%= current_user.last_name %>
-    <%= current_user.state %>
-    <%= current_user.address %>
-    <%= current_user.phone %>
-    <% if current_user.users_picture.attached? %>
-        <%= image_tag current_user.users_picture,  height: 150 %>
-    <% end %>
-    
-    <%= link_to "edit your profile", edit_user_registration_path(current_user) %>
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <% if user_signed_in? %>
+                <% if current_user.users_picture.attached? %>
+                    <%= image_tag current_user.users_picture,  height: 150 %>
+                <% end %>
+                <%= current_user.first_name %> 
+                <%= current_user.last_name %>
+                <%= current_user.state %>
+                <%= current_user.address %>
+                <%= current_user.phone %>
+                
+                
+                <%= link_to "edit your profile", edit_user_registration_path(current_user) %>
 
-    <% @favorite_farmers.each do |farmer| %>
-        <p><%= farmer.farmer.farm_name %>
+                <% @favorite_farmers.each do |farmer| %>
+                    <p><%= farmer.farmer.farm_name %>
 
-    <% end %>
+                <% end %>
 
-    <% if !current_user.order_history.empty? %>
-        <%= link_to "orders history", orders_complete_path %>
-    <% end %>
-<% else %>
-    <p>You need to sign in or sign up before continuing.</p>
-<% end %>
+                <% if !current_user.order_history.empty? %>
+                    <%= link_to "orders history", orders_complete_path %>
+                <% end %>
+            <% else %>
+                <p>You need to sign in or sign up before continuing.</p>
+            <% end %>
+        </div>
+    </div>   
+</div>

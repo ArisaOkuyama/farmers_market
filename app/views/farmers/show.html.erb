@@ -109,7 +109,9 @@
                                 
                                 <div class="jumbotron">
                                   <% if review.user.users_picture.attached? %>
-                                      <%= image_tag review.user.users_picture,  height: 50, style: "border-radius:50%;" %>
+                                      <div><%= image_tag review.user.users_picture,  height: 50, style: "border-radius:50%;" %></div>
+                                  <% else %>
+                                      <div class="no-picture">NO IMAGE</div>
                                   <% end %>
                                   <%= review.user.first_name %>
                                   <%= review.comment %><br>
