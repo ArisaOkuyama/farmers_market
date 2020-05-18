@@ -104,19 +104,22 @@
                               <%= link_to "create view for this farmer", new_farmer_review_path(@farmer), class: "btn btn-block btn-info	" %>
                             <% end %>
                             <p>
-                            <% if !@reviews.empty? %>
-                              <% @reviews.each do |review| %>
-                                <%= User.find(review.user_id).first_name %>
-                                <%= review.comment %>
-                                <%= review.rating %>
-                                
-                                <% if user_signed_in? && current_user == review.user %>
-                                <%= link_to 'Destroy', "/farmers/#{@farmer.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
+                              <% if !@reviews.empty? %>
+                                <% @reviews.each do |review| %>
+                                    <div class="col-md-12">
+                                      <div class="jumbotron">
+                                        <h1><%= review.user.first_name %><%= review.user.last_name %></h1>
+                                        <%= review.comment %><br>
+                                        Rating:  <%= review.rating %><br>
+                                        <% if user_signed_in? && current_user == review.user %>
+                                        <%= link_to 'Destroy', "/farmers/#{@farmer.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
+                                        <% end %>
+                                        </div>
+                                      </div>      
                                 <% end %>
+                              <% else %>
+                                <p> there is no review .... </p>
                               <% end %>
-                            <% else %>
-                              <p> there is no review .... </p>
-                            <% end %>
                             </p>
                           </div>
                       </div>
