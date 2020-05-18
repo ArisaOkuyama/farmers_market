@@ -20,11 +20,14 @@
   <%= @product.stock %>
 </p>
 
+<br>
 
 <% if @product.price %>
   <p>
-  <%= number_to_currency @product.price %>
-  <%= link_to "Buy now", new_order_path(product_id: @product.id) %>
+  <%= number_to_currency @product.price %><br>
+  <%= link_to "new_order_path(product_id: @product.id)" , class: "link-buy" do %>
+    <div class="btn btn-warning"><i class="fa fa-shopping-cart"></i> BUY NOW</div>
+  <% end %>
   </p>
 <% end %>
 
