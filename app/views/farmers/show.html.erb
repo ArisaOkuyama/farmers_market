@@ -106,13 +106,19 @@
                             <p>
                             <% if !@reviews.empty? %>
                               <% @reviews.each do |review| %>
-                                <%= User.find(review.user_id).first_name %>
-                                <%= review.comment %>
-                                <%= review.rating %>
                                 
-                                <% if user_signed_in? && current_user == review.user %>
-                                <%= link_to 'Destroy', "/farmers/#{@farmer.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
-                                <% end %>
+                                <div class="jumbotron">
+                                  <% if review.user.users_picture.attached? %>
+                                      <%= image_tag review.user.users_picture,  height: 50, style: "border-radius:50%;" %>
+                                  <% end %>
+                                  <%= review.user.first_name %>
+                                  <%= review.comment %><br>
+                                  Rating:  <%= review.rating %>
+                                  
+                                  <% if user_signed_in? && current_user == review.user %>
+                                  <%= link_to 'Destroy', "/farmers/#{@farmer.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
+                                  <% end %>
+                                </div>
                               <% end %>
                             <% else %>
                               <p> there is no review .... </p>

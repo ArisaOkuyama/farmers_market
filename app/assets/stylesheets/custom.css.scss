@@ -1,17 +1,11 @@
-@import 'bootstrap/dist/css/bootstrap';
+@import "bootstrap/dist/css/bootstrap";
 
 .navbar {
+    background-color: #fdf6ea !important;
+}
 
-    background-color: #FDF6EA !important;
-    
-    }
-    
-     
-    
-    .navbar-brand {
-    
+.navbar-brand {
     font-size: 3rem;
-    
-    }
-    
-   
+}
+
+.carousel-item {   max-height: 50vh !important; }
