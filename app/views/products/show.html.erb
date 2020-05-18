@@ -21,7 +21,7 @@
       </p>
       <p>
         Farmer:    
-        <%= link_to farmer_path(@product.farmer_id) do %>
+        <%= link_to farmer_path(@product.farmer) do %>
           <%= @product.farmer.farm_name %>
         <% end %>
       </p>
@@ -30,7 +30,7 @@
       <% if @product.price %>
         <p>
         <strong><%= number_to_currency @product.price %></strong>
-        <%= link_to "new_order_path(product_id: @product.id)" , class: "link-buy" do %>
+        <%= link_to new_order_path(product_id: @product.id) , class: "link-buy" do %>
           <div class="btn btn-warning btn-block"><i class="fa fa-shopping-cart"></i> BUY NOW</div>
         <% end %>
         </p>
