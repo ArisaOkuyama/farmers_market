@@ -20,10 +20,10 @@
             <tr>
               <td><%= farmer.address %></td><br>
               <td><%= link_to 'Show', farmer %></td>
-        <% if user_signed_in? && current_user.farmer == farmer %>
-          <td><%= link_to 'Edit', edit_farmer_path(farmer) %></td>
-          <td><%= link_to 'Destroy', farmer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+              <% if user_signed_in? && current_user.farmer == farmer %>
+                <td><%= link_to 'Edit', edit_farmer_path(farmer) %></td>
+                <td><%= link_to 'Destroy', farmer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
             <tr>
           </div>
         </div>

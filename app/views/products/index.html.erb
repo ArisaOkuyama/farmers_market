@@ -1,12 +1,15 @@
 <h1> Search by categry </h1>
 
 <%= form_tag(products_path, method: "get") do %>
+    
     <%= collection_select(:search, :category_id, Category.all, :id, :name, prompt: 'All products') %>
+    
     <%= text_field_tag(:state, params[:name]) %>
 
     <%= button_tag(type: "submit", class: "btn btn-warning") do %>
         <i class="fa fa-search"></i> Search
     <% end %>
+    
 <% end %>
 <%= render 'products/index' %>
 
