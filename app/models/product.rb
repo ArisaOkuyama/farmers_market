@@ -10,5 +10,8 @@ class Product < ApplicationRecord
     has_one_attached :picture
     has_many :order_histories
 
-
+    validates :name, presence: true
+    validates :picture, presence: true
+    validates :stock, presence: true
+    validates :description, presence: true, length: { maximum: 200 }   
 end
