@@ -36,7 +36,6 @@
           <li class="nav-item">
             <%= link_to "Register as Farmer", new_farmer_path	, class: "nav-link" %>
           </li>
-<<<<<<< HEAD
         <% end %>
       <% end %>
       <% if user_signed_in? %>
@@ -58,41 +57,3 @@
     </form>
   </div>
 </nav>
-=======
-          <% if user_signed_in? %>
-            <% if current_user.has_role? :farmer %>
-              <li class="nav-item">
-                <%= link_to "Create product",new_product_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Profile" ,farmer_path(current_user.farmer), class: "nav-link" %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to "Profile", pages_profile_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Register as Farmer", new_farmer_path	, class: "nav-link" %>
-              </li>
-            <% end %>
-          <% end %>
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "Log out", destroy_user_session_path, class: "nav-link", method: :delete %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
-            </li>
-          <% end %>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-</nav>
->>>>>>> 00b96b0e4517856c6a48c53ec2774b477512a283
