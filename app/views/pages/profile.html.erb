@@ -27,7 +27,7 @@
                         <div class="card-body">
                             <% if @favorite_farmers.count >= 1 %>
                                 <% @favorite_farmers.each do |farmer| %>
-                                    <%= link_to "farmer_path(farmer.farmer)" do %>
+                                    <%= link_to farmer_path(farmer.farmer) do %>
                                         <strong><%= farmer.farmer.farm_name %></strong><br>
                                     <% end %>
                                 <% end %>
@@ -42,7 +42,7 @@
                         <h5 class="card-header">Order History</h5>
                         <div class="card-body">
                             <% if !current_user.order_history.empty? %>
-                                <%= link_to "History show page", orders_complete_path %>
+                                <%= link_to "orders history", orders_complete_path %>
                             <% else %>
                                 <p>There is no order history.</p>
                             <% end %>
