@@ -22,6 +22,9 @@ class FarmersController < ApplicationController
   # GET /farmers/new
   def new
     @farmer = Farmer.new
+    if current_user.farmer 
+      redirect_to root_path , notice: 'You already have registered as a farmer.' 
+    end
   end
 
   # GET /farmers/1/edit
