@@ -4,14 +4,16 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+
+    @products = Product.all.page(params[:page]).per(3)
       if params[:search][:category_id].present?
-        @products = Product.search(params[:search][:category_id])
-        @products = @products.search(params[:state]) if params[:state].present?
+        @products = Product.search(params[:search][:category_id]).page(params[:page]).per(3)
+        @products = @products.search(params[:state]).page(params[:page]).per(3) if params[:state].present?
       else
-        @products = Product.all
-        @products = @products.search(params[:state]) if params[:state].present?
+        @products = Product.all.page(params[:page]).per(3)
+        @products = @products.search(params[:state]).page(params[:page]).per(3) if params[:state].present?
       end
+      
   end
 
   # GET /products/1
