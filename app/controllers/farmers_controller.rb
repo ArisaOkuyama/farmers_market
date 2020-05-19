@@ -6,7 +6,7 @@ class FarmersController < ApplicationController
   # GET /farmers
   # GET /farmers.json
   def index
-    @farmers = Farmer.all
+    @farmers = Farmer.all.page(params[:page]).per(3)
   end
 
   
