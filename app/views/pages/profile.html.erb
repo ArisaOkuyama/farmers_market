@@ -18,7 +18,9 @@
                     
                     <%= current_user.address %>, <%= current_user.state %><br>
                     <br>
-                    <%= link_to "edit your profile", edit_user_registration_path(current_user), class: "btn btn-info" %>
+                    <div class="text-right">
+                        <%= link_to "edit your profile", edit_user_registration_path(current_user), class: "btn btn-info" %>
+                    </div>
                 </div>  
                 <div class="col-md-12" %>
                     <br><br>
