@@ -13,7 +13,6 @@ class FarmersController < ApplicationController
   # GET /farmers/1
   # GET /farmers/1.json
   def show
-    @farmer = Farmer.find(params[:id])
     @reviews = @farmer.reviews
     @products = @farmer.products
     @favorited_users = @farmer.favorite_farmers
@@ -38,7 +37,6 @@ class FarmersController < ApplicationController
     @user = current_user
     @farmer.user = @user
     @farmer.farmers_picture.attach(params[:farmer][:farmers_picture])
-
     respond_to do |format|
       if @farmer.save
         current_user.add_role (:farmer)

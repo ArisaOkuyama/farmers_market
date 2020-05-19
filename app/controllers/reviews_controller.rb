@@ -17,7 +17,6 @@ class ReviewsController < ApplicationController
   def new
     @farmer = Farmer.find(params[:farmer_id])
     @review = Review.new
-
   end
 
   # GET /reviews/1/edit

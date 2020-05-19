@@ -2,9 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
-  # GET /products.json
   def index
-
     @products = Product.all.page(params[:page]).per(3)
       if params[:search][:category_id].present?
         @products = Product.search(params[:search][:category_id]).page(params[:page]).per(3)
@@ -13,11 +11,9 @@ class ProductsController < ApplicationController
         @products = Product.all.page(params[:page]).per(3)
         @products = @products.search(params[:state]).page(params[:page]).per(3) if params[:state].present?
       end
-      
   end
 
   # GET /products/1
-  # GET /products/1.json
   def show
   end
 
@@ -31,7 +27,6 @@ class ProductsController < ApplicationController
   end
 
   # POST /products
-  # POST /products.json
   def create
     @product = Product.new(product_params)
     @product.category_id = params[:product][:category_id]
@@ -49,7 +44,6 @@ class ProductsController < ApplicationController
   end
 
   # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
       if @product.update(product_params)
@@ -63,7 +57,6 @@ class ProductsController < ApplicationController
   end
 
   # DELETE /products/1
-  # DELETE /products/1.json
   def destroy
     @product.destroy
     respond_to do |format|

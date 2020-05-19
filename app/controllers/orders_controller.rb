@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
       
   end
 
+  # after transaction completed
   def complete
     @product_number = params[:item]
     OrderHistory.create(user_id: current_user.id, product_id: @product_number.to_i)
