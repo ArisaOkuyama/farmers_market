@@ -62,3 +62,4 @@ gem "aws-sdk-s3", "~> 1.64", require: false
 gem "rolify", "~> 5.2"
 gem 'stripe'
 gem "pg_search", "~> 2.3"
+gem 'kaminari'
