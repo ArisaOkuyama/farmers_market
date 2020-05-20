@@ -4,11 +4,11 @@ class ProductsController < ApplicationController
   # GET /products
   def index
     @products = Product.all.page(params[:page]).per(8)
-      if params[:search][:category_id].present?
+      if params[:search][:category_id].present? 
         @products = Product.search(params[:search][:category_id]).page(params[:page]).per(8)
-        @products = @products.search(params[:state]).page(params[:page]).per(3) if params[:state].present?
+        @products = @products.search(params[:state]).page(params[:page]).per(8) if params[:state].present?
       else
-        @products = @products.search(params[:state]).page(params[:page]).per(3) if params[:state].present?
+        @products = @products.search(params[:state]).page(params[:page]).per(8) if params[:state].present?
       end
   end
 

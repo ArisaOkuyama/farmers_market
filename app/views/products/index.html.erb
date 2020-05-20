@@ -4,7 +4,7 @@
     
     <%= collection_select(:search, :category_id, Category.all, :id, :name, prompt: 'All products') %>
     
-    <%= text_field_tag(:state, params[:name]) %>
+    <%= text_field_tag(:state, params[:name], placeholder: 'Enter state...') %>
 
     <%= button_tag(type: "submit", class: "btn btn-warning") do %>
         <i class="fa fa-search"></i> Search
