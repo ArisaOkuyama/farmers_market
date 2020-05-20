@@ -17,9 +17,9 @@
           <div class="content">
             <span class="font-size:1vw"><%= product.state %><br></span>
             Category: <%= Category.find(product.category_id).name %><br>
-            <%= link_to "SHOW", product , class: "btn btn-info btn-sm" %><br>
+            <%= link_to "SHOW", product , class: "btn btn-info btn-sm mb-2 mt-1" %>
             <% if user_signed_in? && current_user.farmer == product.farmer %>
-              <td><%= link_to "DELETE", product , method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-info" %></td>
+              <%= link_to "DELETE", product , method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-info btn-sm mt-1 mb-2" %>
             <% end %>
           </div>
         </div>
