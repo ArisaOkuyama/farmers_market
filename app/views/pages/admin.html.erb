@@ -1,0 +1,27 @@
+<ul class="list-group">
+    <li class="list-group-item active">
+        Categories list
+    </li>
+    <% @categories.each do |category| %>
+        <li class="list-group-item">
+            <%= category.name %>
+            <%= link_to "DELETE", category_path(category) , method: :delete, class: "pull-right" %>
+        </li>
+    <% end %>
+</ul>
+
+<div class="container">
+    <div class="jumotron"> 
+        <%= form_with(model: @category, local: true, url: categories_path, class: "form-group") do |form| %>
+
+            <div class="field">
+                <%= form.label :category %>
+                <%= form.text_field :name %>
+            </div>
+
+            <div class="actions">
+                <%= form.submit %>
+            </div>
+        <% end %>
+    </div>
+</div>

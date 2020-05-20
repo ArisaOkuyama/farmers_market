@@ -14,4 +14,7 @@ class PagesController < ApplicationController
     @favorite_farmers = current_user.favorite_farmers
   end
 
+  def admin
+    @categories = Category.all
+  end
 end

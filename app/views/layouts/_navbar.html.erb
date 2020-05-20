@@ -53,4 +53,11 @@
           <% end %>
         </ul>
       </div>
+      <li class="form-inline mr-4 ">
+        <% if user_signed_in? %>
+          <% if current_user.has_role? :admin %>
+            <%= link_to "Admin", pages_admin_path %>
+          <% end %>
+        <% end %>
+      </li>
 </nav>
