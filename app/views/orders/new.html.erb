@@ -1,26 +1,29 @@
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
 
-<h1 class="list-item">
-Your order
-</h1>
-<table>
-<thead>
-<tr>
-<th>Title</th>
-<th>Author</th>
-<th>Price</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><%= @product.name %></td>
-<td><%= @product.description %></td>
-<td><%= number_to_currency @product.price %></td>
-</tr>
-</tbody>
-</table>
-<button id="pay-now">Checkout now</button>
+<h2 class="mb-5">Your order</h2>
+<div class="row">
+    <div class="col-md-12" %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= @product.name %></td>
+                    <td><%= @product.description %></td>
+                    <td><%= number_to_currency @product.price %></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="mt-5" id="pay-now">Checkout now</button>
+
+    </div> 
+</div>
+
+
 
 <script src="https://js.stripe.com/v3/"></script>
 

@@ -51,13 +51,14 @@
               <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
             </li>
           <% end %>
+          <li class="nav-item">
+            <% if user_signed_in? %>
+              <% if current_user.has_role? :admin %>
+                <%= link_to "Admin", pages_admin_path , class: "nav-link"%>
+              <% end %>
+            <% end %>
+          </li>
         </ul>
       </div>
-      <li class="form-inline mr-4 ">
-        <% if user_signed_in? %>
-          <% if current_user.has_role? :admin %>
-            <%= link_to "Admin", pages_admin_path %>
-          <% end %>
-        <% end %>
-      </li>
+      
 </nav>

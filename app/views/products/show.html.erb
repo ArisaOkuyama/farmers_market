@@ -30,9 +30,11 @@
       <% if @product.price %>
         <p>
         <strong><%= number_to_currency @product.price %></strong>
+        <div class="btn btn-warning">
         <%= link_to new_order_path(product_id: @product.id) , class: "link-buy" do %>
-          <div class="btn btn-warning btn-block"><i class="fa fa-shopping-cart"></i> BUY NOW</div>
+          <i class="fa fa-shopping-cart"></i> BUY NOW
         <% end %>
+        </div>
         </p>
       <% end %>
 
