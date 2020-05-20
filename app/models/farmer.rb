@@ -13,4 +13,9 @@ class Farmer < ApplicationRecord
     validates :state, presence: true
     validates :address, presence: true
     validates :farmers_picture, presence: true
+
+
+    def full_name
+        "#{first_name}  #{last_name}"
+    end
 end

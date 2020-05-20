@@ -31,6 +31,7 @@ class ProductsController < ApplicationController
     @product.category_id = params[:product][:category_id]
     @product.farmer = current_user.farmer
     @product.picture.attach(params[:product][:picture])
+    @product.state = current_user.farmer.state
     respond_to do |format|
       if @product.save
         format.html { redirect_to product_path(@product), notice: 'Product was successfully created.' }
