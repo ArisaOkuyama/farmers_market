@@ -20,7 +20,7 @@
                             <%= @farmer.address %>
                           </h6>
                           <h5>
-                            <%=@farmer.first_name %> <%=@farmer.last_name %>
+                            <%=@farmer.full_name %>
                           </h5>
                           <p class="proile-rating">STATE : <%=@farmer.state %></p>
                           <br>
@@ -44,7 +44,7 @@
                 <p>Number of followers : <%= @favorited_users.count %></p>
                   followed by : 
                   <% @favorited_users.each do  |user|  %>
-                   <%= User.find(user.user_id).first_name %>
+                   <%= User.find(user.user_id).full_name %>
                   <% end %>
                 </h6>
                 <% if user_signed_in? && current_user.farmer == @farmer %>
@@ -122,7 +122,7 @@
                                       <% end %>
                                     </div>
                                     <div class="col-md-10">
-                                      @<%= review.user.first_name %>
+                                      @<%= review.user.full_name %>
                                       <%= review.comment %><br>
                                       Rating:  <%= review.rating %> 
                                       reviewed at <%= review.created_at.strftime("%Y-%m-%d") %>
