@@ -22,7 +22,10 @@
                   <ul class="list-unstyled mb-2">
                     <% @categories.each do |category| %>
                       <li>
-                        <a href="#"><%= category.name %></a>
+                        <% @id = category.id %>
+                        <%= link_to products_path(:search => {"category_id"=>"#{@id}"}) do %>
+                          <%= category.name %></a>
+                        <% end %>
                       </li>
                     <% end %>
                   </ul>
