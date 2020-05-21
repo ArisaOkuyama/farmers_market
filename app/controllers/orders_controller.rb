@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  # only user can purchase product
+  before_action :authenticate_user!, only: [:new, :complete]
 
   def new
     @product = Product.find(params[:product_id])

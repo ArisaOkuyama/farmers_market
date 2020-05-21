@@ -1,24 +1,18 @@
 class FarmersController < ApplicationController
   before_action :set_farmer, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :delete]
-
+  before_action :check_farmer, only: [:edit, :delete]
   
-  # GET /farmers
-  # GET /farmers.json
   def index
     @farmers = Farmer.all.page(params[:page]).per(8)
   end
 
-  
-  # GET /farmers/1
-  # GET /farmers/1.json
   def show
     @reviews = @farmer.reviews
     @products = @farmer.products
     @favorited_users = @farmer.favorite_farmers
   end
 
-  # GET /farmers/new
   def new
     @farmer = Farmer.new
     if current_user.farmer 
@@ -26,12 +20,9 @@ class FarmersController < ApplicationController
     end
   end
 
-  # GET /farmers/1/edit
   def edit
   end
 
-  # POST /farmers
-  # POST /farmers.json
   def create
     @farmer = Farmer.new(farmer_params)
     @user = current_user
@@ -49,8 +40,6 @@ class FarmersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /farmers/1
-  # PATCH/PUT /farmers/1.json
   def update
     respond_to do |format|
       if @farmer.update(farmer_params)
@@ -63,8 +52,6 @@ class FarmersController < ApplicationController
     end
   end
 
-  # DELETE /farmers/1
-  # DELETE /farmers/1.json
   def destroy
     @farmer.destroy
     respond_to do |format|
@@ -82,5 +69,12 @@ class FarmersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def farmer_params
       params.require(:farmer).permit(:farm_name, :first_name, :last_name, :state, :address,:farmers_picture)
+    end
+    
+    # checks if user is not a farmer also farmer only can edit and detele theri page
+    def check_farmer
+      if !current_user.farmer or !(current_user.farmer.id == @farmer.id)
+        redirect_to root_path, notice: 'You are not authorised for this action.'
+      end
     end
 end

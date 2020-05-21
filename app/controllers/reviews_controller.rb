@@ -1,30 +1,24 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :delete]
+  before_action :farmer_cant_review, only: [:new, :edit, :delete]
 
-  # GET /reviews
-  # GET /reviews.json
   def index
     @reviews = Review.all
   end
 
-  # GET /reviews/1
-  # GET /reviews/1.json
   def show
     @reviews = Review.find(params[:review_id])
   end
 
-  # GET /reviews/new
   def new
     @farmer = Farmer.find(params[:farmer_id])
     @review = Review.new
   end
 
-  # GET /reviews/1/edit
   def edit
   end
   
-  # POST /reviews
-  # POST /reviews.json
   def create
     @farmer = Farmer.find(params[:farmer_id])
     @review = Review.new(review_params)
@@ -35,11 +29,8 @@ class ReviewsController < ApplicationController
     else
       redirect_to root_path, notice: "Coundnot save your reveiwe"
     end
-    
   end
 
-  # PATCH/PUT /reviews/1
-  # PATCH/PUT /reviews/1.json
   def update
     respond_to do |format|
       if @review.update(review_params)
@@ -52,8 +43,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # DELETE /reviews/1
-  # DELETE /reviews/1.json
   def destroy
     @farmer = Farmer.find(params[:farmer_id])
     @review.destroy
@@ -72,5 +61,11 @@ class ReviewsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def review_params
       params.require(:review).permit(:comment, :rating)
+    end
+    # only user allow to write a review for farmer
+    def farmer_cant_review
+      if current_user.farmer
+        redirect_to root_path, notice: 'You are not authorised for this action.'
+      end
     end
 end

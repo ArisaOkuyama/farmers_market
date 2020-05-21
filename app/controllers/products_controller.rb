@@ -1,28 +1,29 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :delete]
   before_action :search_category_state, only: [:index]
-  # GET /products
+  before_action :matched_farmer, only: [:edit, :delete]
+  before_action :is_farmer, only: [:new]
+
+
   def index
+    #sorting by newest or cheapest from all products
     @products = @products.order(created_at: :desc) if params[:new].present?
     @products = @products.order(:price) if params[:order].present?
     
     @products = @products.page(params[:page]).per(8)
   end
 
-  # GET /products/1
   def show
   end
 
-  # GET /products/new
   def new
     @product = Product.new
   end
 
-  # GET /products/1/edit
   def edit
   end
 
-  # POST /products
   def create
     @product = Product.new(product_params)
     @product.category_id = params[:product][:category_id]
@@ -40,7 +41,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1
   def update
     respond_to do |format|
       if @product.update(product_params)
@@ -53,7 +53,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # DELETE /products/1
   def destroy
     @product.destroy
     respond_to do |format|
@@ -84,6 +83,19 @@ class ProductsController < ApplicationController
         @products = Product.search(params[:state])
       else
         @products = Product.all
+      end
+    end
+
+    # checks if farmer_id matches to product and user is a farmer
+    def matched_farmer
+      if !current_user.farmer or !(current_user.farmer.id == @product.farmer.id)
+        redirect_to root_path, notice: 'You are not authorised for this action.'
+      end
+    end
+    # check if user is farmer to create a product
+    def is_farmer
+      if !current_user.farmer
+        redirect_to root_path, notice: 'You are not authorised for this action.'
       end
     end
 end 
