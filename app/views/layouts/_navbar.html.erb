@@ -16,6 +16,7 @@
           <li class="nav-item">
             <%= link_to "Farmers", farmers_path, class: "nav-link" %>
           </li>
+<!-- links only shows to farmer --> 
           <% if user_signed_in? %>
             <% if current_user.has_role? :farmer %>
               <li class="nav-item">
@@ -31,7 +32,8 @@
               <li class="nav-item">
                 <%= link_to "Register as Farmer", new_farmer_path	, class: "nav-link" %>
               </li>
-            <% end %>
+            <% end %> 
+<!-- end -->     
           <li class="nav-item">
             <%= link_to "Q&A", pages_qanda_path, class: "nav-link" %>
           </li>

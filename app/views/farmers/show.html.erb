@@ -1,8 +1,10 @@
+
 <%= link_to 'Back', farmers_path, class: "btn btn-outline-success" %>
 <% if user_signed_in? && current_user.farmer == @farmer %>
   <%= link_to 'Create Product', new_product_path(@farmer) , class: "btn btn-outline-success" %>
 <% end %>
 
+<!-- porofile section starts-->
 <div class="container emp-profile">
   <form method="post">
       <div class="row">
@@ -28,6 +30,8 @@
               </div>
           </div>
       </div>
+
+<!-- porofile favorite farmers section-->
       <div class="row">
           <div class="col-md-4">
               <div class="profile-work">
@@ -52,6 +56,7 @@
                 <% end %>
               </div>
           </div>
+<!-- porofile products section-->
           <div class="col-md-8">
               <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
@@ -97,10 +102,9 @@
                         <% if @products.empty? %>
                           <p> there is no products available.... </p>
                         <% end %>
-                      </div>
-                              
-                              
+                      </div>               
                   </div>
+<!-- porofile reviews section--> 
                   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                       <div class="row">
                           <div class="col-md-12">

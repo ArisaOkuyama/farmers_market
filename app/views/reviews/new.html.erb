@@ -1,5 +1,7 @@
-<h1>New Review</h1>
+<div class="container">
+<h2 class="text-left mt-3 mb-3 ">New Review</h2>
 
 <%= render 'form', review: @review, farmer: @farmer %>
 
-<%= link_to 'Back', farmer_path(@farmer) %>
+<%= link_to 'Back', farmer_path(@farmer), class: "pull-right m-4 btn btn-default" %>
+</div>

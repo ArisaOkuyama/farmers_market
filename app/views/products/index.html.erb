@@ -1,5 +1,7 @@
 <h1> Search by categry </h1>
 
+<!-- Search/sort section -->
+
 <%= form_tag(products_path, method: "get") do %>
     
     <%= collection_select(:search, :category_id, Category.all, :id, :name, prompt: 'All products' ) %>

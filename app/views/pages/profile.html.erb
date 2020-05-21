@@ -1,7 +1,9 @@
+<!-- Profile -->
 <div class="container">
     <div class="jumbotron">
         <% if user_signed_in? %>
             <div class="row">
+            <!-- Profile Pic-->
                 <div class="col-md-4 text-center">
                     <% if current_user.users_picture.attached? %>
                         <%= image_tag current_user.users_picture,  height: 150 %>
@@ -11,16 +13,16 @@
                         </div>
                     <% end %>
                 </div>
+                <!-- Profile details -->
                 <div class="col-md-8">
-                
                     <h3><%= current_user.full_name %></h3><br>
-                    
                     <%= current_user.address %>, <%= current_user.state %><br>
                     <br>
                     <div class="text-right">
                         <%= link_to "edit your profile", edit_user_registration_path(current_user), class: "btn btn-info" %>
                     </div>
                 </div>  
+                <!-- Favorite farmers -->
                 <div class="col-md-12" %>
                     <br><br>
                     <div class="card">
@@ -38,6 +40,7 @@
                         </div>
                     </div> 
                 </div> 
+                <!-- Order History -->
                 <div class="col-md-12" %>
                     <div class="card">
                         <h5 class="card-header">Order History</h5>

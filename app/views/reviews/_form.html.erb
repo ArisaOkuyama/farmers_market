@@ -1,28 +1,29 @@
-<%= form_with(model: review, local: true, url: farmer_reviews_path) do |form| %>
-  <% if review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+<div class="container">
+  <%= form_with(model: review, local: true, url: farmer_reviews_path) do |form| %>
+    <% if review.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
 
-      <ul>
-        <% review.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% review.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-4">
+      <%= form.label :review %>
+      <%= form.text_field :comment %>
+    </div>
+
+    <div class=" mb-4">
+        <%= form.label :rating %>
+        <%= form.text_field :rating %>
+    </div>
+
+    <div class="form-control btn text-left">
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :comment %>
-    <%= form.text_field :comment %>
-  </div>
-
-  <div class="field">
-      <%= form.label :rating %>
-      <%= form.text_field :rating %>
-  </div>
-
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
