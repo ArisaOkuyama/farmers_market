@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
 
   def index
-    @products = Product.all
+    # it shows the 8 newest products in top page when render '_index' from product view
+    @products = Product.all.order(created_at: :desc).first(8)
     @categories = Category.all
   end
 
