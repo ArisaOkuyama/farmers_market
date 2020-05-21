@@ -1,9 +1,11 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :search_category_state, only: [:index]
-
   # GET /products
   def index
+    @products = @products.order(created_at: :desc) if params[:new].present?
+    @products = @products.order(:price) if params[:order].present?
+    
     @products = @products.page(params[:page]).per(8)
   end
 
@@ -68,7 +70,7 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :description, :price, :state, :stock, :picture)
+      params.require(:product).permit(:name, :description, :price, :state, :stock, :picture, :order, :new)
     end
 
     #Searching by only category or both category and state or only state
@@ -84,4 +86,4 @@ class ProductsController < ApplicationController
         @products = Product.all
       end
     end
-end
+end 
