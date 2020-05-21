@@ -1,4 +1,5 @@
 class FavoriteFarmersController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :delete]
   before_action :define_user_farmer, only: [:create, :destroy]
 
   def index
