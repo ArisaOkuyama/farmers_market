@@ -7,7 +7,7 @@
       <div class="card">
         <div class="image">
           <% if product.picture.attached? %>
-            <%= image_tag product.picture, width: 320, height: 150 %>
+            <%= image_tag product.picture,  id: "card-image" %>
           <% end %>
         </div>
         <div class="card-inner">
