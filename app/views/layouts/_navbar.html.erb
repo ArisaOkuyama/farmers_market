@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <%= link_to "Seico Mart", root_path, class: "navbar-brand" %>
+      <%= link_to "Seicomart", root_path, class: "navbar-brand" %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -34,13 +34,16 @@
               </li>
             <% end %> 
 <!-- end -->     
+          <% end %>
+          <li class="nav-item">
+            <%= link_to "About us", pages_aboutus_path, class: "nav-link" %>
+          </li>
           <li class="nav-item">
             <%= link_to "Q&A", pages_qanda_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "Contact Us", pages_contactus_path, class: "nav-link" %>
           </li>
-          <% end %>
           <% if user_signed_in? %>
             <li class="nav-item">
               <%= link_to "Log out", destroy_user_session_path, class: "nav-link", method: :delete %>

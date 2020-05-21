@@ -9,6 +9,9 @@ class PagesController < ApplicationController
   def qanda
   end
 
+  def aboutus
+  end
+
   def contactus 
   end
 

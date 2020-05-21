@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   get 'pages/contactus'
   get 'pages/profile'
   get 'pages/admin'
+  get 'pages/aboutus'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
