@@ -19,10 +19,10 @@
           <div class="content">
             <tr>
               <td><%= farmer.address %></td><br>
-              <td><%= link_to 'Show', farmer %></td>
+              <td><%= link_to 'Show', farmer , class: 'btn btn-info mt-2'%></td>
               <% if user_signed_in? && current_user.farmer == farmer %>
-                <td><%= link_to 'Edit', edit_farmer_path(farmer) %></td>
-                <td><%= link_to 'Destroy', farmer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= link_to 'Edit', edit_farmer_path(farmer), class: 'btn btn-info mt-2' %></td>
+                <td><%= link_to 'Destroy', farmer, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-info mt-2'%></td>
               <% end %>
             <tr>
           </div>

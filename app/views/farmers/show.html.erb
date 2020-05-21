@@ -106,7 +106,7 @@
                           <div class="col-md-12">
                             <p><h1> Reviews: </h1></p>
                             <% if user_signed_in? &&  !(current_user.has_role? :farmer) %>
-                                <%= link_to "create view for this farmer", new_farmer_review_path(@farmer), class: "btn btn-block btn-info	" %>
+                                <%= link_to "create view for this farmer", new_farmer_review_path(@farmer), class: "btn btn-block btn-info" %>
                               
                             <% end %>
                             <p>
@@ -114,7 +114,7 @@
                               <% @reviews.each do |review| %>
                                 <div class="jumbotron pt-2 pb-2 mb-2">
                                   <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 review-pic">
                                       <% if review.user.users_picture.attached? %>
                                           <div><%= image_tag review.user.users_picture,  height: 50, style: "border-radius:50%;" %></div>
                                       <% else %>
@@ -122,13 +122,13 @@
                                       <% end %>
                                     </div>
                                     <div class="col-md-10">
-                                      @<%= review.user.full_name %>
+                                      @<%= review.user.full_name %><br>
                                       <%= review.comment %><br>
                                       Rating:  <%= review.rating %> 
                                       reviewed at <%= review.created_at.strftime("%Y-%m-%d") %>
                                       
                                       <% if user_signed_in? && current_user == review.user %>
-                                      <%= link_to 'Destroy', "/farmers/#{@farmer.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
+                                      <%= link_to 'Destroy', "/farmers/#{@farmer.id}/reviews/#{review.id}", method: :delete, data: { confirm: 'Are you sure?' }, class: "pull-right" %>
                                       <% end %>
                                     </div>
                                   </div>

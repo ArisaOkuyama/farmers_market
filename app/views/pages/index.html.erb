@@ -15,7 +15,7 @@
         <div class="col-md-4 col-xs-12">
           <!-- Categories Widget -->
           <div class="card my-4">
-            <h5 class="card-header">Categories</h5>
+            <h5 class="card-header category-link p-4">Categories</h5>
             <div class="card-body">
               <div class="row">
                 <div class="col-lg-6">
@@ -24,7 +24,7 @@
                       <li>
                         <% @id = category.id %>
                         <%= link_to products_path(:search => {"category_id"=>"#{@id}"}) do %>
-                          <%= category.name %></a>
+                          <div class="category-link"><%= category.name %></div>
                         <% end %>
                       </li>
                     <% end %>
@@ -35,9 +35,9 @@
           </div>
           <!-- Side Widget -->
           <div class="col-md-4 col-xs-12 sociallink">
-                <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
-                <a href="https://twitter.com/" class="fa fa-twitter"></a>
-                <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
+                <a href="https://www.facebook.com/" class="fa fa-facebook fas"></a>
+                <a href="https://twitter.com/" class="fa fa-twitter fas"></a>
+                <a href="https://www.instagram.com/" class="fa fa-instagram fas"></a>
               </div>
           </div>
         </div>
