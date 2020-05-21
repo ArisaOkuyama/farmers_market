@@ -2,15 +2,19 @@
 
 <%= form_tag(products_path, method: "get") do %>
     
-    <%= collection_select(:search, :category_id, Category.all, :id, :name, prompt: 'All products') %>
+    <%= collection_select(:search, :category_id, Category.all, :id, :name, prompt: 'All products' ) %>
     
-    <%= text_field_tag(:state, params[:name], placeholder: 'Enter state...') %>
+    <%= text_field_tag(:state, params[:name], placeholder: 'Enter state...', class: "mr-2 ml-2") %>
 
     <%= button_tag(type: "submit", class: "btn btn-warning") do %>
         <i class="fa fa-search"></i> Search
     <% end %>
-    
+
 <% end %>
+<%= link_to "Cheapest", products_path(:order => "price", :search => {:category_id => ""} ), class:"btn btn-success pull-right mr-3" %>
+<%= link_to "Newest", products_path(:new => "created_at" , :search => {:category_id => ""}), class:"btn btn-success pull-right mr-3" %>
+
+<br>
 <%= render 'products/index' %>
 <p class>
  <%= paginate @products %>
