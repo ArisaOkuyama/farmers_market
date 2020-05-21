@@ -46,9 +46,9 @@
                 <% end %>
                 <h6>
                 <p>Number of followers : <%= @favorited_users.count %></p>
-                  followed by : 
+                  followed by : <br>
                   <% @favorited_users.each do  |user|  %>
-                   <%= User.find(user.user_id).full_name %>
+                   <%= User.find(user.user_id).full_name %><br>
                   <% end %>
                 </h6>
                 <% if user_signed_in? && current_user.farmer == @farmer %>
